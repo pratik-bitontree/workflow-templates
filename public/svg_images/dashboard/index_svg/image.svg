@@ -1,0 +1,20 @@
+<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="photo">
+<g id="Path">
+<path d="M7.89937 4.21646H7.90464" stroke="currentColor" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M7.89937 4.21646H7.90464" stroke="currentColor" strokeOpacity="0.2" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+<g id="Rectangle">
+<rect x="2.10742" y="2.10938" width="8.42667" height="8.42667" rx="1.58" stroke="currentColor" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+<rect x="2.10742" y="2.10938" width="8.42667" height="8.42667" rx="1.58" stroke="currentColor" strokeOpacity="0.2" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+<g id="Path_2">
+<path d="M2.10742 7.89697L4.21409 5.7903C4.70294 5.3199 5.30524 5.3199 5.79409 5.7903L8.42742 8.42363" stroke="currentColor" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M2.10742 7.89697L4.21409 5.7903C4.70294 5.3199 5.30524 5.3199 5.79409 5.7903L8.42742 8.42363" stroke="currentColor" strokeOpacity="0.2" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+<g id="Path_3">
+<path d="M7.37305 7.37165L7.89971 6.84499C8.38857 6.37459 8.99086 6.37459 9.47971 6.84499L10.533 7.89832" stroke="currentColor" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M7.37305 7.37165L7.89971 6.84499C8.38857 6.37459 8.99086 6.37459 9.47971 6.84499L10.533 7.89832" stroke="currentColor" strokeOpacity="0.2" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+</g>
+</svg>

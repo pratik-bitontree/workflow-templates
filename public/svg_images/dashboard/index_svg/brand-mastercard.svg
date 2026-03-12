@@ -1,0 +1,16 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="brand-mastercard" opacity="0.6">
+<g id="Oval">
+<circle cx="14" cy="12" r="3" stroke="#4B465C" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+<circle cx="14" cy="12" r="3" stroke="white" strokeOpacity="0.2" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+<g id="Path">
+<path d="M12 9.76501C10.7976 8.6884 8.9589 8.75602 7.83883 9.91803C6.71876 11.0801 6.71876 12.92 7.83883 14.082C8.9589 15.244 10.7976 15.3116 12 14.235" stroke="#4B465C" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M12 9.76501C10.7976 8.6884 8.9589 8.75602 7.83883 9.91803C6.71876 11.0801 6.71876 12.92 7.83883 14.082C8.9589 15.244 10.7976 15.3116 12 14.235" stroke="white" strokeOpacity="0.2" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+<g id="Rectangle">
+<rect x="3" y="5" width="18" height="14" rx="2" stroke="#4B465C" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+<rect x="3" y="5" width="18" height="14" rx="2" stroke="white" strokeOpacity="0.2" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+</g>
+</svg>

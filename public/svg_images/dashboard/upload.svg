@@ -1,0 +1,16 @@
+<svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="upload">
+<g id="Path">
+<path d="M4.66675 20.4844V22.8177C4.66675 24.1064 5.71142 25.151 7.00008 25.151H21.0001C22.2887 25.151 23.3334 24.1064 23.3334 22.8177V20.4844" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M4.66675 20.4844V22.8177C4.66675 24.1064 5.71142 25.151 7.00008 25.151H21.0001C22.2887 25.151 23.3334 24.1064 23.3334 22.8177V20.4844" stroke="white" strokeOpacity="0.1" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+<g id="Path_2">
+<path d="M8.16675 11.1536L14.0001 5.32031L19.8334 11.1536" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M8.16675 11.1536L14.0001 5.32031L19.8334 11.1536" stroke="white" strokeOpacity="0.1" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+<g id="Path_3">
+<path d="M14.0001 5.32031V19.3203" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M14.0001 5.32031V19.3203" stroke="white" strokeOpacity="0.2" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+</g>
+</svg>

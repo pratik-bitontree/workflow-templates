@@ -1,0 +1,12 @@
+<svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="video">
+<g id="Path">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M7.90039 5.94955L10.2983 4.75086C10.4615 4.6693 10.6553 4.67803 10.8105 4.77393C10.9658 4.86983 11.0603 5.03924 11.0604 5.2217V8.78407C11.0603 8.96653 10.9658 9.13594 10.8105 9.23184C10.6553 9.32774 10.4615 9.33647 10.2983 9.25491L7.90039 8.05622V5.94955Z" stroke="currentColor" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M7.90039 5.94955L10.2983 4.75086C10.4615 4.6693 10.6553 4.67803 10.8105 4.77393C10.9658 4.86983 11.0603 5.03924 11.0604 5.2217V8.78407C11.0603 8.96653 10.9658 9.13594 10.8105 9.23184C10.6553 9.32774 10.4615 9.33647 10.2983 9.25491L7.90039 8.05622V5.94955Z" stroke="currentColor" strokeOpacity="0.2" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+<g id="Rectangle">
+<rect x="1.58008" y="3.84375" width="6.32" height="6.32" rx="1.05333" stroke="currentColor" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+<rect x="1.58008" y="3.84375" width="6.32" height="6.32" rx="1.05333" stroke="currentColor" strokeOpacity="0.2" strokeWidth="0.921667" strokeLinecap="round" strokeLinejoin="round"/>
+</g>
+</g>
+</svg>
