@@ -167,7 +167,7 @@ export async function signInOAuthService(
       response = await instance.get(authEndpoints.hubspotLogin());
       break;
     case "calendly":
-      response = await instance.get(authEndpoints.calendlyLogin());
+      response = await instance.get(authEndpoints.calendlyLogin(_userId));
       break;
     case "zoho":
       response = await instance.get(authEndpoints.zohoLogin());

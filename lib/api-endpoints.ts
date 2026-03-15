@@ -74,7 +74,10 @@ export const authEndpoints = {
   airtableLogin: () => withApiUrl(`/orchestration/airtable/auth/login`),
   microsoftLogin: () => withApiUrl(`/orchestration/microsoft/login`),
   hubspotLogin: () => withApiUrl(`/orchestration/hubspot/auth/login`),
-  calendlyLogin: () => withApiUrl(`/orchestration/calendly/login`),
+  calendlyLogin: (userId?: string) => {
+    const q = userId ? `?userId=${encodeURIComponent(userId)}` : '';
+    return withApiUrl(`/orchestration/calendly/login${q}`);
+  },
   zohoLogin: (region?: string) => {
     const regionQuery = region ? `?region=${encodeURIComponent(region)}` : "";
     return withApiUrl(`/orchestration/zoho/login${regionQuery}`);

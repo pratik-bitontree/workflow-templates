@@ -311,7 +311,7 @@ export function DynamicForm({
       })}
       <button
         type="submit"
-        disabled={isSubmitting || disableSubmit}
+        disabled={isSubmitting}
         className="rounded-lg bg-primary-green px-5 py-2.5 text-white font-medium hover:opacity-90 disabled:opacity-50"
       >
         {isSubmitting ? "Running…" : submitLabel}
