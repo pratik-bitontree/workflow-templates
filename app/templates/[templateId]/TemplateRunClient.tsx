@@ -378,7 +378,7 @@ export function TemplateRunClient({ workflow }: TemplateRunClientProps) {
                 <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-900">
                   <p className="font-medium">Setup note</p>
                   <p className="mt-1 text-primary-grey">
-                  Add this webhook to <strong>{webhookServiceName}</strong>’s webhook settings. Use this template&apos;s Workflow ID, Node ID 6985c684f6f284b9838ea298, and User ID below. The webhook URL is built from <code className="rounded bg-amber-100 px-1 font-mono text-xs">NEXT_PUBLIC_API_BASE_URL</code> in your env (current base: <code className="break-all rounded bg-amber-100 px-1 font-mono text-xs">{webhookBaseUrl}</code>).
+                  Add this webhook to <strong>{webhookServiceName}</strong>’s: use this template&apos;s Workflow ID, Node ID 6985c684f6f284b9838ea298, and User ID below. 
                   </p>
                 </div>
                 <div className="space-y-1.5">
