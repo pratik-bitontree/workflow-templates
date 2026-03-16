@@ -18,9 +18,34 @@ import type {
   WorkflowHistoryResponse,
   IntegrationDetail,
 } from "@/lib/types";
-import { apiGet, apiPost, ApiError } from "@/lib/api";
+import { apiGet, apiPost, ApiError, getBackendBaseUrl } from "@/lib/api";
 import { orchestrationEndpoints } from "@/lib/api-endpoints";
 import { getIntegrationHeaders } from "@/lib/integration-api";
+
+const WEBHOOK_USER_ID = "000000000000000000000001";
+/** Fixed trigger node ID for all three webhook registration templates (Calendly, Cal.com, Instantly). */
+const REGISTRATION_TRIGGER_NODE_ID = "6985c684f6f284b9838ea298";
+
+/** Path segment for webhook from template name: cal | calendly | instantly */
+function getWebhookRegistrationPathSegment(templateName: string): string {
+  const n = (templateName || "").toLowerCase();
+  if (n.includes("instantly")) return "instantly";
+  if (n.includes("calendly")) return "calendly";
+  if (n.includes("cal.com")) return "cal";
+  return "cal";
+}
+
+/** Example trigger URL (base from NEXT_PUBLIC_API_BASE_URL). Not for input default. */
+function getWebhookRegistrationExampleUrl(
+  baseUrl: string,
+  pathSegment: string,
+  workflowId: string,
+  nodeId: string,
+  userId: string
+): string {
+  const params = new URLSearchParams({ workflowId, nodeId, userId });
+  return `${baseUrl}/orchestration/workflow/${pathSegment}/trigger-webhook?${params.toString()}`;
+}
 
 /** Sort nodes by execution flow: by startTime/endTime so they appear in run order */
 function sortNodesByFlow<T extends { startTime?: string; endTime?: string; nodeId?: string }>(nodes: T[]): T[] {
@@ -131,6 +156,45 @@ export function TemplateRunClient({ workflow }: TemplateRunClientProps) {
   const [missingIntegrations, setMissingIntegrations] = useState<{ key: string; name: string }[]>([]);
 
   const fields = getFormFieldsFromWorkflow(workflow.nodes || []);
+
+  const isWebhookRegistrationTemplate =
+    typeof workflow.name === "string" &&
+    [
+      "Calendly Webhook Registration",
+      "Cal.com webhook Registration",
+      "Instantly Webhook Registration",
+    ].includes(workflow.name.trim());
+
+  /** CRM sync templates: show webhook note only (no Run button). Add webhook to Cal.com/Calendly. */
+  const WEBHOOK_NOTE_ONLY_TEMPLATES = [
+    "Cal.com to Hubspot CRM Automated Contact & Meeting Sync",
+    "Calendly to Zoho CRM Automated Contact & Meeting Sync",
+    "Cal.com to Zoho CRM Automated Contact & Meeting Sync",
+    "Calendly to Hubspot Automated Contact & Meeting Sync",
+  ];
+  const isWebhookNoteOnlyTemplate =
+    isWebhookRegistrationTemplate ||
+    (typeof workflow.name === "string" && WEBHOOK_NOTE_ONLY_TEMPLATES.includes(workflow.name.trim()));
+
+  const registrationTriggerNode = (workflow.nodes || []).find((n) => {
+    const t = (n.type || "").toLowerCase();
+    return t === "calendly" || t === "cal" || t === "instantly";
+  });
+
+  const registrationPathSegment = getWebhookRegistrationPathSegment(workflow.name || "");
+  const webhookBaseUrl = getBackendBaseUrl();
+  const registrationExampleUrl =
+    (isWebhookNoteOnlyTemplate || (isWebhookRegistrationTemplate && registrationTriggerNode)) && workflow._id
+      ? getWebhookRegistrationExampleUrl(
+          webhookBaseUrl,
+          registrationPathSegment,
+          workflow._id,
+          REGISTRATION_TRIGGER_NODE_ID,
+          WEBHOOK_USER_ID
+        )
+      : "";
+  const webhookServiceName =
+    registrationPathSegment === "cal" ? "Cal.com" : registrationPathSegment === "calendly" ? "Calendly" : registrationPathSegment === "instantly" ? "Instantly" : "your service";
 
   useEffect(() => {
     const required = getRequiredIntegrationKeys(workflow);
@@ -309,21 +373,55 @@ export function TemplateRunClient({ workflow }: TemplateRunClientProps) {
             <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-primary-grey">
               Input parameters
             </h2>
-            {/* {missingIntegrations.length > 0 && (
-              <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
-                <p className="font-medium">Required integrations not connected</p>
-                <p className="mt-1 text-amber-700">
-                  This workflow needs: {missingIntegrations.map((m) => m.name).join(", ")}. Connect them before running.
-                </p>
-                <Link
-                  href="/integrations"
-                  className="mt-2 inline-block font-medium text-primary-green hover:underline"
-                >
-                  Open Integration Hub →
-                </Link>
+            {isWebhookNoteOnlyTemplate && registrationExampleUrl ? (
+              <div className="space-y-5 text-sm">
+                <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-900">
+                  <p className="font-medium">Setup note</p>
+                  <p className="mt-1 text-primary-grey">
+                  Add this webhook to <strong>{webhookServiceName}</strong>’s webhook settings. Use this template&apos;s Workflow ID, Node ID 6985c684f6f284b9838ea298, and User ID below. The webhook URL is built from <code className="rounded bg-amber-100 px-1 font-mono text-xs">NEXT_PUBLIC_API_BASE_URL</code> in your env (current base: <code className="break-all rounded bg-amber-100 px-1 font-mono text-xs">{webhookBaseUrl}</code>).
+                  </p>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-medium uppercase text-primary-grey">
+                    Webhook URL <span className="normal-case font-normal">(copy and add to {webhookServiceName})</span>
+                  </label>
+                  <p className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 font-mono text-xs text-primary-black break-all">
+                    {registrationExampleUrl}
+                  </p>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-medium uppercase text-primary-grey">Trigger node ID</label>
+                  <input
+                    type="text"
+                    readOnly
+                    value={REGISTRATION_TRIGGER_NODE_ID}
+                    className="w-full rounded-lg border border-gray-300 bg-gray-100 px-3 py-2 font-mono text-xs text-primary-black"
+                  />
+                </div>
+
+                <div className="grid gap-3 sm:grid-cols-1">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium uppercase text-primary-grey">User ID</label>
+                    <input
+                      type="text"
+                      readOnly
+                      value={WEBHOOK_USER_ID}
+                      className="w-full rounded-lg border border-gray-300 bg-gray-100 px-3 py-2 font-mono text-xs text-primary-black"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-medium uppercase text-primary-grey">Workflow ID</label>
+                    <input
+                      type="text"
+                      readOnly
+                      value={workflow._id}
+                      className="w-full rounded-lg border border-gray-300 bg-gray-100 px-3 py-2 font-mono text-xs text-primary-black"
+                    />
+                  </div>
+                </div>
               </div>
-            )} */}
-            {fields.length > 0 ? (
+            ) : fields.length > 0 ? (
               <DynamicForm
                 fields={fields}
                 onSubmit={handleSubmit}

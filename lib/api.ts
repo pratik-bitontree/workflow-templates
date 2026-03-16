@@ -1,5 +1,11 @@
 const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000").replace(/\/$/, "") + "/api";
 
+/** Backend root URL from env (NEXT_PUBLIC_API_BASE_URL). Use for webhook/orchestration URLs. */
+export function getBackendBaseUrl(): string {
+  const base = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+  return String(base).replace(/\/+$/, "");
+}
+
 export type ApiError = {
   message: string;
   status?: number;
