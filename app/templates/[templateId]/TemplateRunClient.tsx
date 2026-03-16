@@ -154,6 +154,7 @@ export function TemplateRunClient({ workflow }: TemplateRunClientProps) {
   const [historyDetailLoading, setHistoryDetailLoading] = useState(false);
 
   const [missingIntegrations, setMissingIntegrations] = useState<{ key: string; name: string }[]>([]);
+  const [registrationTriggerUrlInput, setRegistrationTriggerUrlInput] = useState("");
 
   const fields = getFormFieldsFromWorkflow(workflow.nodes || []);
 
@@ -420,6 +421,31 @@ export function TemplateRunClient({ workflow }: TemplateRunClientProps) {
                     />
                   </div>
                 </div>
+
+                {isWebhookRegistrationTemplate && (
+                  <>
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-medium uppercase text-primary-grey">
+                        Trigger URL <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="url"
+                        value={registrationTriggerUrlInput}
+                        onChange={(e) => setRegistrationTriggerUrlInput(e.target.value)}
+                        placeholder="Paste the trigger URL from above or type your URL"
+                        className="w-full rounded-lg border border-gray-300 px-3 py-2 font-mono text-xs text-primary-black placeholder:text-gray-400"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleSubmit({ trigger_url: registrationTriggerUrlInput })}
+                      disabled={runState === "submitting" || !registrationTriggerUrlInput.trim()}
+                      className="rounded-lg bg-primary-green px-5 py-2.5 text-white font-medium hover:opacity-90 disabled:opacity-50"
+                    >
+                      {runState === "submitting" ? "Running…" : "Run workflow"}
+                    </button>
+                  </>
+                )}
               </div>
             ) : fields.length > 0 ? (
               <DynamicForm
