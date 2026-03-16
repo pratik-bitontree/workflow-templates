@@ -172,6 +172,7 @@ export function TemplateRunClient({ workflow }: TemplateRunClientProps) {
     "Calendly to Zoho CRM Automated Contact & Meeting Sync",
     "Cal.com to Zoho CRM Automated Contact & Meeting Sync",
     "Calendly to Hubspot Automated Contact & Meeting Sync",
+    "Campaign Reply Alert & Auto-Responder (Instantly)",
   ];
   const isWebhookNoteOnlyTemplate =
     isWebhookRegistrationTemplate ||
